@@ -3,11 +3,26 @@ require "test_helper"
 class UserTest < ActiveSupport::TestCase
   def setup
     @user = User.new(name:"Example User",email:"User@example.com")
-    @user1 = User.new(name:"Just name")
   end
 
   test "should be valid" do
     assert @user.valid?
-    refute @user1.valid?
   end
+
+  test "name should be present" do
+    @user.name = '   '
+    refute @user.valid?
+  end
+
+  test "email should be present" do
+    @user.email = '   '
+    refute @user.valid?
+  end
+
+  test "email should be unique" do
+    @user.save
+    @new_user = User.new(name:'Another User',email:"User@example.com")
+    refute @new_user.valid?
+  end
+  
 end
