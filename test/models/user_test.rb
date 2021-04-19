@@ -30,5 +30,10 @@ class UserTest < ActiveSupport::TestCase
     @new_user = User.new(name:'Another User',email:"User@example.com")
     refute @new_user.valid?
   end
-  
+
+  test "email should not be too long" do
+    @user.email ="a"*256
+    refute @user.valid?
+  end
+
 end
