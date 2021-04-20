@@ -34,7 +34,6 @@ class UserTest < ActiveSupport::TestCase
   test 'name should not be too long' do
     @user.name = "a" * 51
     refute @user.valid?
-
   end
 
   test "email should be present" do
@@ -44,8 +43,8 @@ class UserTest < ActiveSupport::TestCase
 
   test "email should be unique" do
     @user.save
-    @new_user = User.new(name:'Another User',email:"User@example.com")
-    refute @new_user.valid?
+    duplicate_user = @user.dup
+    refute duplicate_user.valid?
   end
 
   test "email should not be too long" do
