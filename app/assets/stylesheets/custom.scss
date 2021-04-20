@@ -103,4 +103,15 @@ footer {
   }
 }
 
-// Miscellaneous
+/* miscellaneous */
+
+.debug_dump {
+  color: black;
+  font-size: 2rem;
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+}
+
