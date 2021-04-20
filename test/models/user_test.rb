@@ -73,6 +73,11 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test 'password should not be blank' do
+    @user.password =@user.password_confirmation = " "*8
+    refute @user.valid?
+  end
+
   test 'password should be minimum 8 characters long' do
     @user.password =@user.password_confirmation = "a"*7
     refute @user.valid?
