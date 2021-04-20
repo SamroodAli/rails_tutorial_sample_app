@@ -2,14 +2,18 @@ require "test_helper"
 
 VALID_EMAIL = %w[
   user@example.com
-  USER@foo.COM A_US-ER@foo.bar.org
-  first.last@foo.jp alice+bob@baz.cn]
+  USER@foo.COM
+  A_US-ER@foo.bar.org
+  first.last@foo.jp
+  alice+bob@baz.cn]
 
 INVALID_EMAIL =  %w[
   user@example,com
+  foo@bar..com
   user_at_foo.org
   user.name@example.
-  foo@bar_baz.com foo@bar+baz.com
+  foo@bar_baz.com
+  foo@bar+baz.com
 ]
 
 
