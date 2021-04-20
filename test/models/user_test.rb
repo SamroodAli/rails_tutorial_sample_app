@@ -20,7 +20,7 @@ INVALID_EMAIL = %w[
 class UserTest < ActiveSupport::TestCase
   def setup
     @user = User.new(name: 'Example User', email: 'User@example.com',
-                     password:"password",password_confirmation:"password")
+                     password: 'password', password_confirmation: 'password')
   end
 
   test 'should be valid' do
@@ -56,7 +56,7 @@ class UserTest < ActiveSupport::TestCase
   test 'email should be downcased before saving to database ' do
     @user.email.upcase!
     @user.save
-    assert_equal(@user.email,@user.email.downcase)
+    assert_equal(@user.email, @user.email.downcase)
   end
 
   test 'email validation should accept valid email addresses' do
@@ -74,12 +74,12 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'password should not be blank' do
-    @user.password =@user.password_confirmation = " "*8
+    @user.password = @user.password_confirmation = ' ' * 8
     refute @user.valid?
   end
 
   test 'password should be minimum 8 characters long' do
-    @user.password =@user.password_confirmation = "a"*7
+    @user.password = @user.password_confirmation = 'a' * 7
     refute @user.valid?
   end
 end
