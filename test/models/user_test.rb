@@ -41,6 +41,11 @@ class UserTest < ActiveSupport::TestCase
     refute @user.valid?
   end
 
+  test 'email should not be too long' do
+    @user.email = 'a' * 256
+    refute @user.valid?
+  end
+
   test 'email should be unique case insensitive' do
     @user.save
     duplicate_user = @user.dup
@@ -48,9 +53,10 @@ class UserTest < ActiveSupport::TestCase
     refute duplicate_user.valid?
   end
 
-  test 'email should not be too long' do
-    @user.email = 'a' * 256
-    refute @user.valid?
+  test 'email should be downcased before saving to database ' do
+    @user.email.upcase!
+    @user.save
+    assert @user.email == @user.email.downcase
   end
 
   test 'email validation should accept valid email addresses' do
