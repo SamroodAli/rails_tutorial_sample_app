@@ -55,7 +55,7 @@ class UserTest < ActiveSupport::TestCase
   test 'email should be downcased before saving to database ' do
     @user.email.upcase!
     @user.save
-    assert @user.email == @user.email.downcase
+    assert_equal(@user.email,@user.email.downcase)
   end
 
   test 'email validation should accept valid email addresses' do
