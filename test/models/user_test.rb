@@ -72,4 +72,9 @@ class UserTest < ActiveSupport::TestCase
       refute @user.valid?, "#{address} should be invalid"
     end
   end
+
+  test 'password should be minimum 8 characters long' do
+    @user.password =@user.password_confirmation = "a"*7
+    refute @user.valid?
+  end
 end
