@@ -46,10 +46,9 @@ class UserTest < ActiveSupport::TestCase
     refute @user.valid?
   end
 
-  test 'email should be unique case insensitive' do
+  test 'email should be unique case' do
     @user.save
     duplicate_user = @user.dup
-    duplicate_user.email = @user.email.upcase
     refute duplicate_user.valid?
   end
 
