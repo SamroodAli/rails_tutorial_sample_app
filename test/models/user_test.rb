@@ -52,14 +52,14 @@ class UserTest < ActiveSupport::TestCase
   test "email validation should accept valid email addresses" do
       VALID_EMAIL.each do |address|
       @user.email = address
-      assert @user.valid?
+      assert @user.valid?,"#{address} should be valid"
     end
   end
 
   test "email validation should refute invalid email addresses" do
       INVALID_EMAIL.each do |address|
       @user.email = address
-      refute @user.valid?
+      refute @user.valid?,"#{address} should be invalid"
     end
   end
 end
