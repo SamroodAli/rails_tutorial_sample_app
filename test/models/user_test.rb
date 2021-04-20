@@ -1,35 +1,15 @@
 require "test_helper"
 
 VALID_EMAIL = %w[
-  test@domain.com
-  lastname@domain.com
-  test.email.with+symbol@domain.com
-  id-with-dash@domain.com
-  a@domain.com (one-letter local part)
-  "abc.test email"@domain.com
-  "xyz.test.@.test.com"@domain.com
-  "abc.(),:;<>[]\".EMAIL.\"email@\ \"email\".test"@strange.domain.com
-  example-abc@abc-domain.com
-  admin@mailserver1
-  #!$%&'*+-/=?^_{}|~@domain.org
-  “()<>[]:,;@\\”!#$%&’-/=?^_`{}| ~.a”@domain.org
-  ” “@domain.org
-  example@localhost
-  example@s.solutions
-  test@com
-  test@localserver
-  test@[IPv6:2018:db8::1]
-]
+  user@example.com
+  USER@foo.COM A_US-ER@foo.bar.org
+  first.last@foo.jp alice+bob@baz.cn]
 
-INVALID_EMAIL = %w[
-  example.com
-  A@b@c@domain.com
-  a”b(c)d,e:f;gi[j\k]l@domain.com
-  abc”test”email@domain.com
-  abc is”not\valid@domain.com
-  abc\ is\”not\valid@domain.com
-  .test@domain.com
-  test@domain..com
+INVALID_EMAIL =  %w[
+  user@example,com
+  user_at_foo.org
+  user.name@example.
+  foo@bar_baz.com foo@bar+baz.com
 ]
 
 
@@ -76,4 +56,10 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test "email validation should refute invalid email addresses" do
+      INVALID_EMAIL.each do |address|
+      @user.email = address
+      refute @user.valid?
+    end
+  end
 end
