@@ -5,6 +5,8 @@
     <%= form_with model: @user, local: true do |form|%>
       <%= form.label :name %>
       <%= form.text_field :name %>
+      <%= form.label :email %>
+      <%= form.email_field :email %>
     <% end %>
   </div>
 </div>
