@@ -13,4 +13,10 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     get signup_path
     assert_response :success
   end
+
+  test 'should save if valid data are given' do
+    assert @user.save
+    assert_equal(User.count,1)
+  end
+
 end
