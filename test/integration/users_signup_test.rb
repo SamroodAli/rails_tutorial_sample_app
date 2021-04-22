@@ -4,8 +4,12 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
   test 'should reject an invalid user' do
     get signup_path
     assert_response :success
-    post users_path, params: { users: { name: 'samrood', email: 'user@invalid',
-                                        password: 'foo', password_confirmation: 'bar' } }
 
+    assert_no_difference 'User.count' do
+      post users_path, params: { user: { name: 'samrood', email: 'user@invalid',
+                                         password: 'foo', password_confirmation: 'bar' } }
+    end
+
+    assert_template 'users/new'
   end
 end
