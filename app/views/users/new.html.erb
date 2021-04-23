@@ -4,14 +4,15 @@
   <div class="col-md-6 col-md-offset-3">
     <%= form_with model: @user, local: true do |form|%>
       <%= render 'shared/error_messages'%>
-
+      <%= form.label :name %>
+      <%= form.text_field :name, class:"form-control" %>
       <%= form.label :email %>
       <%= form.email_field :email ,class:"form-control"%>
-
       <%= form.label :password %>
       <%= form.password_field :password ,class:"form-control"%>
-      
-      <%= form.submit "Log in", class:"btn btn-primary" %>
+      <%= form.label :password_confirmation,"Confirmation" %>
+      <%= form.password_field :password_confirmation ,class:"form-control"%>
+      <%= form.submit "Create my account", class:"btn btn-primary" %>
     <% end %>
   </div>
 </div>
