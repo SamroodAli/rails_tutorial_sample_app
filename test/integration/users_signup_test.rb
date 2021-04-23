@@ -25,6 +25,8 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                   password: 'passpass',
                                   password_confirmation: 'passpass'}
                                 }
+    follow_redirect!
+    assert_select "div.alert.alert-success"
     end
   end
 end
