@@ -15,4 +15,16 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     assert_select 'div#error_explanation',1
     assert_select 'div#error_explanation ul li', 3
   end
+
+  test "should accept a valid user" do
+    get signup_path
+    assert_difference "User.count", 1 do
+      post users_path, params: { user:
+                                { name: 'samrood',
+                                  email: "example@example.com",
+                                  password: 'passpass',
+                                  password_confirmation: 'passpass'}
+                                }
+    end
+  end
 end
