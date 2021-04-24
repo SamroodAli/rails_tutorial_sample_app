@@ -1,8 +1,15 @@
 class SessionsController < ApplicationController
-  def new; end
+
+  def new;end
 
   def create
-    render 'new'
+    user = User.find_by(email: user_params[:email])
+    if user && user.authenticate(user_params[:password])
+      redirect_to user
+    else
+      self.flash[:danger]= "Success"
+      render "new"
+    end 
   end
 
   def destroy
@@ -10,7 +17,7 @@ class SessionsController < ApplicationController
 
   private
   def user_params
-    params.require(:sessions).permit(:email, :password)
+    params.require(:session).permit(:email, :password)
   end
 
 
