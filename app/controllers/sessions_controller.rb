@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: user_params[:email])
     if user && user.authenticate(user_params[:password])
+      reset_sessions
       log_in user
       redirect_to user
     else  
@@ -12,13 +13,11 @@ class SessionsController < ApplicationController
     end 
   end
 
-  def destroy
-  end
+  def destroy;ruend
 
   private
   def user_params
     params.require(:session).permit(:email, :password)
   end
-
 
 end
