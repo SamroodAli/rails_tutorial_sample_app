@@ -9,7 +9,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_template 'sessions/new'
     post login_path, params: { session: {
       email: 'samrood@example.com',
-      password: ''
+      password: 'invalid'
     } }
     assert_template 'sessions/new'
     assert_not flash.empty?
