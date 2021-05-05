@@ -39,16 +39,16 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select 'a[href=?]', user_path(@user), 0
   end
 
-  test 'login with remembering' do 
-      log_in_as(@user,remember_me: '1')
-      assert_equal cookies[:remember_token], assigns(:user).remember_token
+  test 'login with remembering' do
+    log_in_as(@user, remember_me: '1')
+    assert_equal cookies[:remember_token], assigns(:user).remember_token
   end
 
-  test 'login with no remembering' do 
-      # Log in to set the cookie
-      log_in_as(@user,remember_me: '1')
-      #log in again to test deleting cookie
-      log_in_as(@user,remember_me: '0')
-      assert_empty cookies[:remember_token]
+  test 'login with no remembering' do
+    # Log in to set the cookie
+    log_in_as(@user, remember_me: '1')
+    # log in again to test deleting cookie
+    log_in_as(@user, remember_me: '0')
+    assert_empty cookies[:remember_token]
   end
 end

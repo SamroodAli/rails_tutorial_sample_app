@@ -33,7 +33,8 @@ class User < ApplicationRecord
   end
 
   def authenticated?(remember_token)
-    return false unless self.remember_digest
+    return false unless remember_digest
+
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
@@ -41,4 +42,3 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 end
-
