@@ -30,7 +30,9 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select 'a[href=?]', user_path(@user)
     delete logout_path
     assert_not is_logged_in?
-    #simulating a user using multiple browser windows
+    # simulating a user using multiple browser windows
+    delete logout_path
+    
     assert_redirected_to root_path
     follow_redirect!
     assert_select 'a[href=?]', login_path, 1
