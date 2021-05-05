@@ -52,5 +52,4 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
       assert cookies[:remember_token].blank?
   end
 
-
 end
