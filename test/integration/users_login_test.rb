@@ -32,7 +32,6 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_not is_logged_in?
     # simulating a user using multiple browser windows
     delete logout_path
-    
     assert_redirected_to root_path
     follow_redirect!
     assert_select 'a[href=?]', login_path, 1
@@ -42,14 +41,14 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
 
   test 'login with remembering' do 
       log_in_as(@user,remember_me: '1')
-      assert_not cookies[:remember_token].blank?
+      assert_equal cookies[:remember_token], assigns(:user).remember_token
   end
 
   test 'login with no remembering' do 
+      # Log in to set the cookie
       log_in_as(@user,remember_me: '1')
-      assert_not cookies[:remember_token].blank?
+      #log in again to test deleting cookie
       log_in_as(@user,remember_me: '0')
-      assert cookies[:remember_token].blank?
+      assert_empty cookies[:remember_token]
   end
-
 end
