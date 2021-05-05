@@ -39,4 +39,10 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select 'a[href=?]', logout_path, 0
     assert_select 'a[href=?]', user_path(@user), 0
   end
+
+  test 'login with remembering' do 
+      log_in_as(@user,remember_me: '1')
+      puts 'hello bro, debug calmly',cookies[:remember_token]
+      assert_not cookies[:remember_token].blank?
+  end
 end
