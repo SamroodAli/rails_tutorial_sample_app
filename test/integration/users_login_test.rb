@@ -46,6 +46,8 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
   end
 
   test 'login with no remembering' do 
+      log_in_as(@user,remember_me: '1')
+      assert_not cookies[:remember_token].blank?
       log_in_as(@user,remember_me: '0')
       assert cookies[:remember_token].blank?
   end
