@@ -29,5 +29,7 @@ class UsersEditTest < ActionDispatch::IntegrationTest
                               email:'example2@gmail.com',
                               password:'foobar123',
                               password_confirmation:'foobar123'}}
+    assert_redirected_to @user
+    assert_not flash.empty?
   end
 end
