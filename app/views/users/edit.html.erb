@@ -1,4 +1,5 @@
 <% provide(:title,"Settings") %>
+<% provide(:header,"Update your profile") %>
 <h1>Update your profile</h1>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -13,10 +14,12 @@
       <%= form.label :password_confirmation,"Confirmation" %>
       <%= form.password_field :password_confirmation ,class:"form-control"%>
       <%= form.submit "Update my account", class:"btn btn-primary" %>
-      <div>
-        <%= gravatar_for @user %>
-        <a href="https://gravatar.com/emails" target="_blank" rel="noopener"> change</a>
-      </div>
+      <% if !@user.new_record? %>
+        <div>
+          <%= gravatar_for @user %>
+          <a href="https://gravatar.com/emails" target="_blank" rel="noopener"> change</a>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>
