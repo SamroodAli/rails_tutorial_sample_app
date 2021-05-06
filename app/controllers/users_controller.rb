@@ -25,8 +25,11 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find_by(id:params[:id])
-    render :show if @user &.update(user_params)
-    render :edit
+    if @user &.update(user_params)
+      render :show 
+    else
+      render :edit
+    end
   end
 
   private
