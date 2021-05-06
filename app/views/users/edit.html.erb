@@ -13,6 +13,10 @@
       <%= form.label :password_confirmation,"Confirmation" %>
       <%= form.password_field :password_confirmation ,class:"form-control"%>
       <%= form.submit "Update my account", class:"btn btn-primary" %>
+      <div>
+        <%= gravatar_for @user %>
+        <a href="https://gravatar.com/emails" target="_blank"> change</a>
+      </div>
     <% end %>
   </div>
 </div>
