@@ -21,4 +21,13 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_select 'div#error_explanation li',4
   end
 
+  test 'successful edit' do 
+    get edit_user_path(@user)
+    assert_response :success
+    patch user_path(@user), params: {user: {
+                              name: 'Samrood Ali', 
+                              email:'example2@gmail.com',
+                              password:'foobar123',
+                              password_confirmation:'foobar123'}}
+  end
 end
