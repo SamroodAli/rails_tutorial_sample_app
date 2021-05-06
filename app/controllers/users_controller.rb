@@ -26,12 +26,13 @@ class UsersController < ApplicationController
     end
   end
 
-  
   def update
     @user = User.find_by(id:params[:id])
     if @user &.update(user_params)
-      render :show 
+      flash[:success] = "Profile updated"
+      redirect_to @user 
     else
+      flash[:danger] = "Please provide valid entries"
       render :edit
     end
   end
