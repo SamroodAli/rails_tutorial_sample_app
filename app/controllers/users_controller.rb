@@ -41,7 +41,7 @@ class UsersController < ApplicationController
 
   def login_required
     unless logged_in?
-      store_location
+      store_original_url
       flash[:danger] = 'PLease log in'
       redirect_to login_url
     end
@@ -49,7 +49,6 @@ class UsersController < ApplicationController
 
   def correct_user
     @user =  User.find_by(id: params[:id])
-    flash[:danger] = "Wrong user, please sign in to your account"
     redirect_to login_url unless correct_user?(@user)
   end
 end
