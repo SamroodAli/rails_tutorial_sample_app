@@ -12,13 +12,13 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     get edit_user_path(@user)
     assert_response :success
     patch user_path(@user), params: {user: {
-                              name: @user.name, 
+                              name: '', 
                               email:'invalid_email',
-                              password:'somepass',
+                              password:'foo',
                               password_confirmation:'nonmatchingpass'}}
     assert_template 'users/edit'
     assert_select 'div.alert'
-    assert_select 'div#error_explanation li',2
+    assert_select 'div#error_explanation li',4
   end
 
 end
