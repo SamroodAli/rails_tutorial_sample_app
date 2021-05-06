@@ -5,7 +5,6 @@ class UsersController < ApplicationController
   end
 
   def new
-    # hello
     @user = User.new
   end
 
