@@ -49,6 +49,6 @@ class UsersController < ApplicationController
   def correct_user
     @user =  User.find_by(id: params[:id])
     flash[:danger] = "Wrong user, please sign in to your account"
-    redirect_to login_url unless @user == current_user
+    redirect_to login_url unless correct_user?(@user)
   end
 end
