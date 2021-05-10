@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :login_required, only: %i[edit update]
+  before_action :login_required, only: %i[index edit update]
   before_action :correct_user, only: %i[edit update]
 
   def index
