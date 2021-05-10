@@ -6,6 +6,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @user2 = users(:micheal)
   end
 
+  test 'should redirect index when not logged in' do
+    get :index
+    assert_redirected_to login_url
+  end 
+
   test 'should get new' do
     get signup_url
     assert_response :success
@@ -26,7 +31,6 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
     assert_redirected_to login_url
   end
-
 
   test 'should redirect when logged in as another user' do
     log_in_as(@user2)

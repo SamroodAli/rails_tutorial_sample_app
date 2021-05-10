@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
-  before_action :login_required, only: [:edit, :update]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :login_required, only: %i[edit update]
+  before_action :correct_user, only: %i[edit update]
+
+  def index
+    @users = User.all
+  end
+
   def show
     @user = User.find(params[:id])
   end
@@ -20,8 +25,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @user.update(user_params)
@@ -48,7 +52,7 @@ class UsersController < ApplicationController
   end
 
   def correct_user
-    @user =  User.find_by(id: params[:id])
+    @user = User.find_by(id: params[:id])
     redirect_to login_url unless correct_user?(@user)
   end
 end
