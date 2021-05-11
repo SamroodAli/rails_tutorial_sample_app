@@ -45,10 +45,8 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     log_in_as(@user2) 
     assert_not @user2.admin?
     patch user_path(@user2), params: { user: {
-                                              password:'password',
-                                              password_confirmation:'password',
                                               admin: 1
     }}
-    assert_not @user2.admin?
+    assert_not @user2.reload.admin?
   end
 end
