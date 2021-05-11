@@ -66,7 +66,5 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", users_path
     assert_select "a[href=?]", users_path
     assert_select "a[href=?]", edit_user_path(@user)
-    # get root_path    
-    # assert_select 'ul.navbar-right li',count:4
   end
 end
