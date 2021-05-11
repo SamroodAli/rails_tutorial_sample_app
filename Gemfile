@@ -11,6 +11,7 @@ gem 'rubocop', '>= 1.0', '< 2.0'
 gem 'sass-rails', '6.0.0'
 gem 'turbolinks', '5.2.1'
 gem 'webpacker', '5.2.1'
+gem 'faker',    '2.11.0'
 
 group :development, :test do
   gem 'byebug', '11.1.3', platforms: %i[mri mingw x64_mingw]
