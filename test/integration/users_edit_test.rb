@@ -39,14 +39,12 @@ class UsersEditTest < ActionDispatch::IntegrationTest
     assert_equal @user.email, 'example2@gmail.com'
   end
 
-
-
   test 'admin attribute should not be editable by patch requests' do
-    log_in_as(@user2) 
+    log_in_as(@user2)
     assert_not @user2.admin?
     patch user_path(@user2), params: { user: {
-                                              admin: 1
-    }}
+      admin: 1
+    } }
     assert_not @user2.reload.admin?
   end
 end
