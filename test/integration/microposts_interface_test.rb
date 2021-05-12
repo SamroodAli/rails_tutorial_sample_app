@@ -3,6 +3,7 @@ require "test_helper"
 class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:samrood)
+    @post = microposts(:orange)
   end
 
   test 'micropost interface' do
@@ -13,5 +14,20 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
       post microposts_path, params:{micropost:{content:""}}
     end
     assert_select 'div#error_explanation'
+    # testing valid submission
+    content ="This micropost really ties the room together"
+    assert_difference 'Micropost.count' do
+      post microposts_path, params:{micropost:{content:content}}
+    end
+    assert_not_nil flash
+    assert_redirected_to root_url
+    follow_redirect!
+    assert_match content, response.body
+    # delete a post
+    assert_select 'a[href=?]',micropost_path(@post), text:'delete'
+    first_micropost = @user.microposts.paginate(page: 1).first
+    assert_difference 'Micropost.count', -1 do
+        delete micropost_path(first_micropost)
+    end
   end
 end

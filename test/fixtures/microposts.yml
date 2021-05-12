@@ -1,7 +1,7 @@
 orange:
   content: "I just ate an orange!"
   created_at: <%= 10.minutes.ago %>
-  user: michael
+  user: samrood
 
 tau_manifesto:
   content: "Check out the @tauday site by @mhartl: https://tauday.com"
