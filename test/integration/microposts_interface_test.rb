@@ -29,5 +29,23 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     assert_difference 'Micropost.count', -1 do
         delete micropost_path(first_micropost)
     end
+    #visit a different user
+    get user_path(users(:archer))
+    assert_select 'a', text:'delete',count:0
+  end
+
+  test 'sidebar with microposts count and pluralization' do
+    # testing pluralize and count using a user with more than 1 posts
+    log_in_as(@user)
+    get root_path
+    assert_match '41 microposts', response.body
+    #testing pluralize and count using a user with 1 post
+    log_in_as(users(:lana))
+    get root_path
+    assert_match '1 micropost', response.body
+    # 0 posts user
+    log_in_as(users(:sanjeed))
+    get root_path
+    assert_match '0 micropost', response.body
   end
 end
