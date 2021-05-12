@@ -1,0 +1,6 @@
+<%= form_with model: @micropost, local: true do |form|%>
+  <div class="field">
+    <%= form.text_field :content %>
+  </div>
+  <%= form.submit "Submit", class:"" %>
+<% end %>
