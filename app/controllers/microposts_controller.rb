@@ -2,7 +2,7 @@ class MicropostsController < ApplicationController
   before_action :login_required, only: [:create, :destroy]
 
   def create
-    @micropost = current_user.micropost.build(microposts_params)
+    @micropost = current_user.microposts.build(microposts_params)
     if @micropost.save
       flash[:success] = 'Micropost created!'
       redirect_to root_url
