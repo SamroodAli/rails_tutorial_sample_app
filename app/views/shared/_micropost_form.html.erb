@@ -1,6 +1,7 @@
-<%= form_with model: @micropost, local: true do |form|%>
+<%= form_with model: @micropost, local: true do |form| %>
+  <%= render 'shared/error_messages', object: form.object %>
   <div class="field">
-    <%= form.text_field :content %>
+    <%= form.text_field :content ,class:"form-control"%>
   </div>
-  <%= form.submit "Submit", class:"" %>
+  <%= form.submit "Post", class:"btn btn-primary"%>
 <% end %>
