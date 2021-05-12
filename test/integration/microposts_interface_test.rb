@@ -22,6 +22,7 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
       post microposts_path, params:{micropost:{content:content, image:image}}
     end
     assert_not_nil flash
+    assert assigns(:micropost).image.attached?
     assert_redirected_to root_url
     follow_redirect!
     assert_match content, response.body
