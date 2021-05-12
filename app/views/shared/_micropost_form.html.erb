@@ -4,4 +4,7 @@
     <%= form.text_field :content ,class:"form-control", placeholder:"Compose new microposts"%>
   </div>
   <%= form.submit "Post", class:"btn btn-primary"%>
+  <span class="image">
+    <%=  form.file_field :image%>
+  </span>
 <% end %>
