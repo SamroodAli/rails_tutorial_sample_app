@@ -21,12 +21,12 @@ jean:
 
 lana:
   name: Lana
-  email: jean@example.com
+  email: lana@example.com
   password_digest: <%= User.digest('password') %>
 
 archer:
   name: Archer
-  email: jean@example.com
+  email: archer@example.com
   password_digest: <%= User.digest('password') %>
 
 

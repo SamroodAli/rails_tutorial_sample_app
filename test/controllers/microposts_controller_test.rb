@@ -3,6 +3,7 @@ require "test_helper"
 class MicropostsControllerTest < ActionDispatch::IntegrationTest
   def setup
     @micropost = microposts(:orange)
+    @ants = microposts(:ants)
   end
 
 
@@ -19,5 +20,13 @@ class MicropostsControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to login_url
   end
+
+  test 'should redirect destroy for wrong micropost' do 
+    log_in_as(users(:samrood))
+    assert_no_difference 'Micropost.count' do
+      delete micropost_path(@ants), params: {id:@ants}
+    end
+  end
+
 
 end
