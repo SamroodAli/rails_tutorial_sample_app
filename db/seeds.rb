@@ -16,3 +16,7 @@ User.create!( name:  "Example User",
                 password:              password,
                 password_confirmation: password)
 end
+
+40.times do |n|
+  User.first.microposts.create(content:'hello world!')
+end
