@@ -19,7 +19,7 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     content ="This micropost really ties the room together"
     image = fixture_file_upload('test/fixtures/kitten.jpg','image/jpeg')
     assert_difference 'Micropost.count' do
-      post microposts_path, params:{micropost:{content:content}}
+      post microposts_path, params:{micropost:{content:content, image:image}}
     end
     assert_not_nil flash
     assert_redirected_to root_url
