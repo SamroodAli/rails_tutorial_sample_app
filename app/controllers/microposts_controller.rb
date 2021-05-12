@@ -3,6 +3,12 @@ class MicropostsController < ApplicationController
 
   def create
     @micropost = current_user.micropost.build(microposts_params)
+    if @micropost.save
+      flash[:success] = 'Micropost created!'
+      redirect_to root_url
+    else
+      render 'static_pages/home'
+    end
   end
 
   def destroy
