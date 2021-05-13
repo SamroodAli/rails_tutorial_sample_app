@@ -15,8 +15,8 @@ gem 'turbolinks', '5.2.1'
 gem 'webpacker', '5.2.1'
 gem 'will_paginate', '3.3.0'
 gem 'active_storage_validations', '0.8.9'
-gem 'image_processing', '1.9.3'
-gem 'mini_magick', '4.9.5'
+gem 'image_processing',           '1.9.3'
+gem 'mini_magick',                '4.9.5'
 
 group :development, :test do
   gem 'byebug', '11.1.3', platforms: %i[mri mingw x64_mingw]
@@ -38,11 +38,13 @@ group :test do
   gem 'minitest-reporters', '1.3.8'
   gem 'rails-controller-testing', '1.0.5'
   gem 'selenium-webdriver', '3.142.7'
-  gem 'webdrivers', '4.6.0'
+    gem 'webdrivers', '4.6.0'
 end
 
 group :production do
   gem 'pg', '1.2.3'
+  gem 'aws-sdk-s3', '1.87.0', require: false
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
