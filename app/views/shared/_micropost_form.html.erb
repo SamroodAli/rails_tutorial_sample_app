@@ -5,7 +5,7 @@
   </div>
   <%= form.submit "Post", class:"btn btn-primary"%>
   <span class="image">
-    <%=  form.file_field :image%>
+    <%=  form.file_field :image, accept: "image/jpeg, image/gif, image/png"%>
   </span>
 <% end %>
 <script type="text/javascript">
