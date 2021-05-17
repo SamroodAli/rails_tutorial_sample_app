@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
   def setup
@@ -12,14 +12,14 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     assert_select 'div.pagination'
     assert_select 'input[type=file]'
     assert_no_difference 'Micropost.count' do
-      post microposts_path, params:{micropost:{content:""}}
+      post microposts_path, params: { micropost: { content: '' } }
     end
     assert_select 'div#error_explanation'
     # testing valid submission
-    content ="This micropost really ties the room together"
-    image = fixture_file_upload('test/fixtures/kitten.jpg','image/jpeg')
+    content = 'This micropost really ties the room together'
+    image = fixture_file_upload('test/fixtures/kitten.jpg', 'image/jpeg')
     assert_difference 'Micropost.count' do
-      post microposts_path, params:{micropost:{content:content, image:image}}
+      post microposts_path, params: { micropost: { content: content, image: image } }
     end
     assert_not_nil flash
     assert assigns(:micropost).image.attached?
@@ -27,14 +27,14 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_match content, response.body
     # delete a post
-    assert_select 'a[href=?]',micropost_path(@post), text:'delete'
+    assert_select 'a[href=?]', micropost_path(@post), text: 'delete'
     first_micropost = @user.microposts.paginate(page: 1).first
     assert_difference 'Micropost.count', -1 do
-        delete micropost_path(first_micropost)
+      delete micropost_path(first_micropost)
     end
-    #visit a different user
+    # visit a different user
     get user_path(users(:archer))
-    assert_select 'a', text:'delete',count:0
+    assert_select 'a', text: 'delete', count: 0
   end
 
   test 'sidebar with microposts count and pluralization' do
@@ -42,7 +42,7 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
     get root_path
     assert_match '41 microposts', response.body
-    #testing pluralize and count using a user with 1 post
+    # testing pluralize and count using a user with 1 post
     log_in_as(users(:lana))
     get root_path
     assert_match '1 micropost', response.body

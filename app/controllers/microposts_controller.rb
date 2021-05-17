@@ -1,5 +1,5 @@
 class MicropostsController < ApplicationController
-  before_action :login_required, only: [:create, :destroy]
+  before_action :login_required, only: %i[create destroy]
   before_action :correct_user, only: :destroy
 
   def create
@@ -17,7 +17,7 @@ class MicropostsController < ApplicationController
   def destroy
     store_original_url
     @micropost.destroy
-    flash[:success] = "Micropost deleted"
+    flash[:success] = 'Micropost deleted'
     if request.referrer == microposts_url # request.referrer gives the orignal location where destroy action was called from
       redirect_to root_url
     else
@@ -26,6 +26,7 @@ class MicropostsController < ApplicationController
   end
 
   private
+
   def microposts_params
     params.require(:micropost).permit(:content)
   end
@@ -34,5 +35,4 @@ class MicropostsController < ApplicationController
     @micropost = current_user.microposts.find_by(id: params[:id])
     redirect_to login_url if @micropost.nil?
   end
-
 end

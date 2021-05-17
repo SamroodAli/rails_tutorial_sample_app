@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
 
-
   def login_required
     unless logged_in?
       store_original_url
@@ -9,5 +8,4 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
-
 end

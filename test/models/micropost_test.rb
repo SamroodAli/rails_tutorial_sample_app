@@ -1,9 +1,9 @@
-require "test_helper"
+require 'test_helper'
 
 class MicropostTest < ActiveSupport::TestCase
   def setup
     @user = users(:samrood)
-    @micropost = @user.microposts.build(content:"Lorem ipsum")
+    @micropost = @user.microposts.build(content: 'Lorem ipsum')
   end
 
   test 'should be valid' do
@@ -16,7 +16,7 @@ class MicropostTest < ActiveSupport::TestCase
   end
 
   test 'content should be utmost 140 characters' do
-    @micropost.content = "a" * 141
+    @micropost.content = 'a' * 141
     assert_not @micropost.valid?
   end
 
@@ -24,4 +24,3 @@ class MicropostTest < ActiveSupport::TestCase
     assert_equal Micropost.first, microposts(:most_recent)
   end
 end
-
