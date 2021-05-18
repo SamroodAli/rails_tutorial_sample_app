@@ -1,15 +1,15 @@
 one:
-  follower: micheal
+  follower: samrood
   followed: lana
 
 two:
-  follower: micheal
-  followed: mallory
+  follower: samrood
+  followed: jean
 
 three:
   follower: lana
-  followed: micheal
+  followed: samrood
 
 four:
   follower: archer
-  followed: micheal
+  followed: samrood

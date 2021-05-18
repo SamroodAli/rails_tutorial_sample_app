@@ -3,7 +3,7 @@ require 'test_helper'
 class UsersControllerTest < ActionDispatch::IntegrationTest
   def setup
     @admin = users(:samrood)
-    @other_user = users(:micheal)
+    @micheal = users(:micheal)
   end
 
   test 'should redirect index when not logged in' do
@@ -33,7 +33,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should redirect when logged in as another user' do
-    log_in_as(@other_user)
+    log_in_as(@micheal)
     patch user_path(@admin), params: { user: {
       name: 'Samrood Ali',
       email: 'example2@gmail.com',
@@ -51,7 +51,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should redirect when logged in as admin' do
-    log_in_as(@other_user)
+    log_in_as(@micheal)
     assert_no_difference 'User.count' do
       delete user_path(@admin)
     end
@@ -61,7 +61,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test 'should delete user when logged in as admin' do
     log_in_as(@admin)
     assert_difference 'User.count', -1 do
-      delete user_path(@other_user)
+      delete user_path(@admin)
     end
     assert_redirected_to users_path
   end
@@ -74,10 +74,5 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test 'should redirect followers when not logged in' do
     get followers_user_path(@admin)
     assert_redirected_to login_url
-  end
-
-  test 'following page' do 
-    get following_user_path(@admin)
-    assert_not @admin.following.empty?
   end
 end
