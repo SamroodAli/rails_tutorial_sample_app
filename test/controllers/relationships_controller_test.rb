@@ -4,7 +4,7 @@ class RelationshipsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should redirect create when not logged in' do
     assert_no_difference 'Relationship.count' do
-      post relationships_path
+      post relationships_path, params: {follower_id:2 }
     end
     assert_redirected_to login_url
   end
