@@ -19,4 +19,12 @@
       <% end %>
     </section>
   </aside>
+  <div class="col-md-8">
+    <% if @users.any? %>
+      <ul class="users follow">
+        <%= render @users %>
+      </ul>
+      <%= will_paginate %>
+    <% end %>
+  </div>
 </div>
