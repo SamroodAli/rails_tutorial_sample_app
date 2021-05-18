@@ -1,4 +1,3 @@
-<%= form_with model: current_user.active_relationships.find_by(followed_id:@user.id), local: true do |form|%>
-  <%= hidden_field_tag :followed_id, @user.id %>
-  <%= form.submit "Follow", class:"btn btn-primary" %>
+<%= form_with model: current_user.active_relationships.find_by(followed_id:@user_id),html:{method: :delete} ,local: true do |form|%>
+  <%= form.submit "Unfollow", class:"btn btn-primary" %>
 <% end %>
