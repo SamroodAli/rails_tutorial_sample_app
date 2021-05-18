@@ -1,0 +1,3 @@
+<%= form_with model: current_user.active_relationships.build(followed_id:@user.id), local: true do |form|%>
+  <%= form.submit "Follow", class:"btn btn-primary" %>
+<% end %>

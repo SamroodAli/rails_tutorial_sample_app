@@ -87,7 +87,6 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.authenticated?('')
   end
 
-
   test 'should follow and unfollow a user' do
     samrood = users(:samrood)
     micheal = users(:micheal)

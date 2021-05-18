@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   has_many :following, through: :active_relationships, source: :followed
 
-  has_many :passive_relationships, class_name: :Relationship , foreign_key: :followed_id, dependent: :destroy
+  has_many :passive_relationships, class_name: :Relationship, foreign_key: :followed_id, dependent: :destroy
 
   has_many :followers, through: :passive_relationships
 
@@ -43,6 +43,7 @@ class User < ApplicationRecord
 
   def authenticated?(remember_token)
     return false unless remember_digest
+
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
@@ -66,7 +67,7 @@ class User < ApplicationRecord
     following.delete(other_user)
   end
 
-def following?(other_user)
+  def following?(other_user)
     following.include?(other_user)
   end
 end
