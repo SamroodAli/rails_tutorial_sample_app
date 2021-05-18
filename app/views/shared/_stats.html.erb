@@ -1,14 +1,15 @@
+<% @user  = @user || current_user%>
 <div class="stats">
   <a href="#">
     <strong id="following" class="stat">
-      <%= current_user.following.count %>
+      <%= @user.following.count %>
     </strong>
     following
   </a>
   <a href="#">
     <strong id="followers" class="stat">
-      <%= current_user.followers.count %>
-      followers
+      <%= @user.followers.count %>
     </strong>
+    followers
   </a>
 </div>
