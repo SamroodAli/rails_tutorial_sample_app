@@ -1,6 +1,6 @@
-<% @user  = @user || current_user%>
+<% @user  ||= current_user%>
 <div class="stats">
-  <a href="#">
+  <a href="<%=  %>">
     <strong id="following" class="stat">
       <%= @user.following.count %>
     </strong>
