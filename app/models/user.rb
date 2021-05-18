@@ -4,6 +4,10 @@ class User < ApplicationRecord
 
   has_many :following, through: :active_relationships, source: :followed
 
+  has_many :passive_relationships, class_name: :Relationship , foreign_key: :followed_id
+
+  has_many :followers, through: :passive_relationships
+
   attr_accessor :remember_token
 
   before_save { email.downcase! } # same as self.email = self.email.downcase or self.email = email.downcase
@@ -39,7 +43,6 @@ class User < ApplicationRecord
 
   def authenticated?(remember_token)
     return false unless remember_digest
-
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
@@ -56,11 +59,13 @@ class User < ApplicationRecord
   end
 
   def follows(other_user)
-    active_relationships.create(followed_id:other_user.id)
+    # active_relationships.create(followed_id:other_user.id)
+    following << other_user
   end
 
   def unfollows(other_user)
-    active_relationships.find_by(followed_id:other_user).destroy
+    # active_relationships.find_by(followed_id:other_user).destroy
+    following.delete(other_user)
   end
 
   #whether following or not
