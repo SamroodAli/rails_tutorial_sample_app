@@ -58,7 +58,7 @@ class User < ApplicationRecord
   def feed
     following_ids_subset = "SELECT followed_id FROM relationships 
     WHERE follower_id = :user_id"
-    Micropost.where("user_id IN (#{following_ids_subset}) OR user_id = :user_id",user_id:id) #self.following_ids, self.id
+    Micropost.where("user_id IN (#{following_ids_subset}) OR user_id = :user_id",user_id:id).includes(:user, image_attachment: :blob)
   end
 
   def follows(other_user)
