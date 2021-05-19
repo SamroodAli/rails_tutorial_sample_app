@@ -116,4 +116,5 @@ class UserTest < ActiveSupport::TestCase
       assert_not samrood.feed.include?(post_unfollowed)
     end
   end
+
 end

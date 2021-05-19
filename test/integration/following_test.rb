@@ -49,4 +49,5 @@ class FollowingTest < ActionDispatch::IntegrationTest
     end
   end
 
+
 end

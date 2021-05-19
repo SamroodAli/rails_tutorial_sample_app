@@ -43,6 +43,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to login_url
   end
 
+
+
   test 'should redirect destroy when not logged in' do
     assert_no_difference 'User.count' do
       delete user_path(@admin)
@@ -64,6 +66,18 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       delete user_path(@admin)
     end
     assert_redirected_to users_path
+  end
+
+  test 'should not allow the admin attribute to be edited via the web' do
+    log_in_as(@admin)
+    assert_not @micheal.admin?
+    patch user_path(@micheal), params: { user:{
+                      name:@micheal.name,
+                      email:@micheal.email,
+                      password:"password",
+                      password_confirmation:'password',
+                      admin:true}
+                    }
   end
 
   test 'should redirect following when not logged in' do
