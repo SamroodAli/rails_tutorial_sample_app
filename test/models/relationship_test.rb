@@ -6,19 +6,20 @@ class RelationshipTest < ActiveSupport::TestCase
       follower_id: users(:samrood).id,
       followed_id: users(:micheal).id
     )
-
-    test 'Should be valid' do
-      assert @relationship.valid?
-    end
-
-    test 'should require a follower_id' do
-      @relationship.follower_id = nil
-      assert_not @relationship.valid?
-    end
-
-    test 'should require a followed_id' do
-      @relationship.followed_id = nil
-      assert_not @relationship.valid?
-    end
   end
+
+  test 'Should be valid' do
+    assert @relationship.valid?
+  end
+
+  test 'should require a follower_id' do
+    @relationship.follower_id = nil
+    assert_not @relationship.valid?
+  end
+
+  test 'should require a followed_id' do
+    @relationship.followed_id = nil
+    assert_not @relationship.valid?
+  end
+
 end

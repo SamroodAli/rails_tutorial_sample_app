@@ -4,6 +4,7 @@ class FollowingTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:samrood)
     log_in_as(@user)
+    @other = users(:micheal)
   end
 
   test 'following page' do
@@ -23,4 +24,17 @@ class FollowingTest < ActionDispatch::IntegrationTest
       assert_select 'a[href=?]', user_path(user)
     end
   end
+
+  test 'should follow a user the standard way' do
+    assert_difference '@user.following.count', 1 do
+      post relationships_path, params: { followed_id: @other.id }
+    end
+  end
+
+  test 'should follow a user with Ajax' do
+      assert_difference '@user.following.count', 1 do
+      post relationships_path, params: { followed_id: @other.id }, xhr: true
+    end
+  end
+
 end
