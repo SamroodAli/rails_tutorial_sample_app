@@ -37,4 +37,16 @@ class FollowingTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test 'should unfollow a user the standard way' do
+    assert_difference '@user.following.count', -1 do
+      delete relationship_path(relationships(:one))
+    end
+  end
+
+  test 'should unfollow a user with Ajax' do
+      assert_difference '@user.following.count', -1 do
+      delete relationship_path(relationships(:one)), xhr: true
+    end
+  end
+
 end
